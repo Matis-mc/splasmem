@@ -5,7 +5,10 @@ CFLAGS= -Wall -g2 -fPIC # -DDEBUG
 LDFLAGS= -ldl -lSDL2
 EXE=splash
 
-all: $(OBJS)
+players:
+	cd pl && $(MAKE)
+
+all: players $(OBJS)
 	gcc  $(OBJS) $(LDFLAGS) -o $(EXE)
 
 tp5: $(OBJS)
@@ -23,4 +26,8 @@ clean:
 	rm -f *.so
 	rm -f $(OBJS)
 	rm -f $(EXE)
+
+clean_all: clean 
+	cd pl && $(MAKE) clean
+
 

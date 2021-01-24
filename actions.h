@@ -22,7 +22,7 @@ enum action
     ACTION_BOMB,
     ACTION_NUMBER
 };
-
+void action_explosion(t_bomb *p_bomb);
 void actions_do(t_player *p_player, enum action act_id);
 void actions_init();
 #endif

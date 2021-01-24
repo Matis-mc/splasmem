@@ -1,6 +1,6 @@
-#include "actions.h"
+#include "../actions.h"
 #include <stdio.h>
-#define MAX_PLAY_ACTION 1
+#define MAX_PLAY_ACTION 2
 
 char play_actions[] = {
     ACTION_STILL

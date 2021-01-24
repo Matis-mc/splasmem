@@ -15,14 +15,14 @@ t_player* players[MAX_PLAYERS] = {0};
 /* ------------------------------------------------------------------------- */
 /*                                                                           */
 /* ------------------------------------------------------------------------- */
-void world_create_players()
+void world_create_players(char* argv[])
 {
     int i = 0;
 
     for (i = 0; i < MAX_PLAYERS; i++)
     {
         players[i] = (t_player*) malloc(sizeof(t_player));
-        player_init(players[i], i);
+        player_init(players[i], i, argv[i+1]);
         world_paint_spot(players[i]->x, players[i]->y, players[i]->id);
     }
 }
