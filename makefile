@@ -32,4 +32,9 @@ clean:
 clean_all: clean 
 	cd pl && $(MAKE) clean
 
+github:all
+	git add .
+	git commit -m update
+	git push -u save --all 
+
 
