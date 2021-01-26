@@ -20,6 +20,7 @@ void player_init(t_player* p_player, uint8_t num, char* argv)
     p_player->data = NULL;
     p_player->credits = 9000;
     p_player->count = 0;
+    p_player->p_bomb = NULL;
     p_player->so_handle = dlopen(argv, RTLD_LAZY);
     if(p_player->so_handle == NULL)
         printf("problem");
@@ -28,7 +29,7 @@ void player_init(t_player* p_player, uint8_t num, char* argv)
         printf("problem");
 }
 
-bomb_init(t_bomb *p_bomb, uint32_t x, uint32_t y, uint32_t id){
+void bomb_init(t_bomb *p_bomb, uint32_t x, uint32_t y, uint32_t id){
     p_bomb->id = id;
     p_bomb->x=x;
     p_bomb->y=y;

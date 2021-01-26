@@ -9,7 +9,7 @@ typedef struct s_bomb{
     uint32_t y;
     uint32_t id;
 } t_bomb;
-void bomb_init(uint32_t x,uint32_t y,uint32_t id);
+void bomb_init(t_bomb *p_bomb, uint32_t x,uint32_t y,uint32_t id);
 
 typedef struct s_player
 {
@@ -21,7 +21,7 @@ typedef struct s_player
     uint32_t y;
     int32_t credits;
     uint32_t count;
-    t_bomb p_bomb;
+    t_bomb *p_bomb;
     void* so_handle;
     char (*get_action)(void);
 

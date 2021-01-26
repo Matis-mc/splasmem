@@ -5,11 +5,13 @@ CFLAGS= -Wall -g2 -fPIC # -DDEBUG
 LDFLAGS= -ldl -lSDL2
 EXE=splash
 
+	
 players:
 	cd pl && $(MAKE)
 
 all: players $(OBJS)
 	gcc  $(OBJS) $(LDFLAGS) -o $(EXE)
+
 
 tp5: $(OBJS)
 	gcc  $(OBJS) -ldl -lSDL2 -lsplash -o $(EXE)
