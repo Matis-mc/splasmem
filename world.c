@@ -6,6 +6,11 @@
 #include "player.h"
 #include "actions.h"
 
+typedef void (*func)();
+func fpointers[] = {action_still, action_move_l, action_move_r, action_move_u, action_move_d, action_dash_l,
+                    action_dash_r, action_dash_u, action_dash_d, action_teleport_l, action_teleport_r,
+                    action_teleport_u, action_teleport_d, action_splash, action_bomb};
+
 /* !!!!!!!!!!!!!!!! MAP !!!!!!!!!!!!!!!!!!!!! */
 uint8_t mapmem[MAP_SIZE * MAP_SIZE] = {0};
 
@@ -32,7 +37,19 @@ void world_create_players(char* argv[])
 /* ------------------------------------------------------------------------- */
 void world_do_player_action(t_player *p_player)
 {
+    if(p_player->count!=0)
+    {
+        if(p_player->count==1){
+            action_explosion(p_player->p_bomb);
+        }
 
+        p_player->count--;                
+    }
+    char a = p_player->get_action();
+    if(p_player->credits >= 0)
+    {
+        fpointers[(int)a](p_player);
+    }
 }
 
 /* ------------------------------------------------------------------------- */

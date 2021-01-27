@@ -18,7 +18,7 @@ void player_init(t_player* p_player, uint8_t num, char* argv)
     p_player->x = start_pos_x[num];
     p_player->y = start_pos_y[num];
     p_player->data = NULL;
-    p_player->credits = 9000;
+    p_player->credits = P_CREDITS;
     p_player->count = 0;
     p_player->p_bomb = NULL;
     p_player->so_handle = dlopen(argv, RTLD_LAZY);

@@ -2,8 +2,7 @@
 #include <stdio.h>
 #define MAX_PLAY_ACTION 2
 
-char play_actions[] = {
-    
+char play_actions[] = {  
     ACTION_DASH_R,
     ACTION_BOMB
 };

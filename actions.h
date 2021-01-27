@@ -3,6 +3,22 @@
 
 #include "player.h"
 
+void action_still(t_player *player);
+void action_move_l(t_player *player);
+void action_move_r(t_player *player);
+void action_move_u(t_player *player);
+void action_move_d(t_player *player);
+void action_dash_l(t_player *player);
+void action_dash_r(t_player *player);
+void action_dash_u(t_player *player);
+void action_dash_d(t_player *player);
+void action_teleport_l(t_player *player);
+void action_teleport_r(t_player *player);
+void action_teleport_u(t_player *player);
+void action_teleport_d(t_player *player);
+void action_splash(t_player *player);
+void action_bomb(t_player *player);
+
 enum action
 {
     ACTION_STILL,

@@ -3,6 +3,7 @@
 
 #include "param.h"
 #include "player.h" 
+#include "actions.h"
 
 extern uint8_t mapmem[];
 extern t_player *players[];
