@@ -1,9 +1,13 @@
 #include "player.h"
 #include "param.h"
+#include "actions.h"
+#include "world.h"
+#include<stdio.h>
 
-actions_init()
+
+void actions_init()
 {
-    return 0;
+    return;
 }
 
 void action_still(t_player *player)
@@ -11,6 +15,7 @@ void action_still(t_player *player)
     player->credits--;
 }
 void action_bomb(t_player *player){    
+    if(player->credits>9){
     if(player->count == 0){
         player->p_bomb=malloc(sizeof(t_bomb));
         player->count = 5;
@@ -23,6 +28,7 @@ void action_bomb(t_player *player){
     }else{
         return;
     }
+    }
 
 }
 void action_move_l(t_player *player)
@@ -32,6 +38,7 @@ void action_move_l(t_player *player)
     {
         player->x = MAP_SIZE - 1;
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits--;
 }
 
@@ -42,6 +49,7 @@ void action_move_r(t_player *player)
     {
         player->x = 0;
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits--;
 }
 
@@ -52,6 +60,7 @@ void action_move_u(t_player *player)
     {
         player->y = MAP_SIZE-1;
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits--;
 }
 
@@ -62,11 +71,13 @@ void action_move_d(t_player *player)
     {
         player->y = 0;
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits--;
 }
 
 void action_dash_l(t_player *player)
 {
+    if(player->credits>10){
     for(int i = 0; i < 8; i++)
     {
         player->x--;
@@ -78,9 +89,11 @@ void action_dash_l(t_player *player)
     }
     player->credits -= 10;
 }
+}
 
 void action_dash_r(t_player *player)
 {
+    if(player->credits>10){
     for(int i = 0; i < 8; i++)
     {
         player->x++;
@@ -92,9 +105,11 @@ void action_dash_r(t_player *player)
     }
     player->credits -= 10;
 }
+}
 
 void action_dash_u(t_player *player)
 {
+    if(player->credits>10){
     for(int i = 0; i < 8; i++)
     {
         player->y--;
@@ -106,9 +121,11 @@ void action_dash_u(t_player *player)
     }
     player->credits -= 10;
 }
+}
 
 void action_dash_d(t_player *player)
 {
+    if(player->credits>10){
     for(int i = 0; i < 8; i++)
     {
         player->y++;
@@ -120,9 +137,10 @@ void action_dash_d(t_player *player)
     }
     player->credits -= 10;
 }
-
+}
 void action_teleport_l(t_player *player)
 {
+    if(player->credits>2){
     for(int i = 0; i < 8; i++)
     {
         player->x--;
@@ -131,11 +149,14 @@ void action_teleport_l(t_player *player)
             player->x = MAP_SIZE;
         }
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits -= 2;
+}
 }
 
 void action_teleport_r(t_player *player)
 {
+    if(player->credits>2){
     for(int i = 0; i < 8; i++)
     {
         player->x++;
@@ -144,11 +165,14 @@ void action_teleport_r(t_player *player)
             player->x = 0;
         }
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits -= 2;
+}
 }
 
 void action_teleport_u(t_player *player)
 {
+    if(player->credits>2){
     for(int i = 0; i < 8; i++)
     {
         player->y--;
@@ -157,11 +181,14 @@ void action_teleport_u(t_player *player)
             player->y = MAP_SIZE - 1;
         }
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits -= 2;
+}
 }
 
 void action_teleport_d(t_player *player)
 {
+    if(player->credits>2){
     for(int i = 0; i < 8; i++)
     {
         player->y++;
@@ -170,11 +197,14 @@ void action_teleport_d(t_player *player)
             player->y = 0;
         }
     }
+    world_paint_spot(player->x, player->y, player->id);
     player->credits -= 2;
+}
 }
 
 //______________________________________________________________________________
 void action_splash(t_player *player){
+    if(player->credits>10){
     // cas des 4 coins
     if(player->x == 0 && player->y==0){
         world_paint_spot(player->x+1, player->y+1, player->id);
@@ -250,6 +280,7 @@ void action_splash(t_player *player){
     player->credits-=8;
     }
     
+}
 }
 
 
