@@ -45,7 +45,7 @@ void action_move_l(t_player *player)
 void action_move_r(t_player *player)
 {
     player->x++;
-    if(player->x > MAP_SIZE)
+    if(player->x > MAP_SIZE-1)
     {
         player->x = 0;
     }
@@ -67,7 +67,7 @@ void action_move_u(t_player *player)
 void action_move_d(t_player *player)
 {
     player->y++;
-    if(player->y == MAP_SIZE)
+    if(player->y == MAP_SIZE-1)
     {
         player->y = 0;
     }
@@ -83,7 +83,7 @@ void action_dash_l(t_player *player)
         player->x--;
         if(player->x < 0)
         {
-            player->x = MAP_SIZE;
+            player->x = MAP_SIZE-1;
         }
         world_paint_spot(player->x, player->y, player->id);
     }
@@ -97,7 +97,7 @@ void action_dash_r(t_player *player)
     for(int i = 0; i < 8; i++)
     {
         player->x++;
-        if(player->x > MAP_SIZE)
+        if(player->x > MAP_SIZE-1)
         {
             player->x = 0;
         }
@@ -129,7 +129,7 @@ void action_dash_d(t_player *player)
     for(int i = 0; i < 8; i++)
     {
         player->y++;
-        if(player->y > MAP_SIZE)
+        if(player->y > MAP_SIZE-1)
         {
             player->y = 1;
         }
@@ -146,7 +146,7 @@ void action_teleport_l(t_player *player)
         player->x--;
         if(player->x <0)
         {
-            player->x = MAP_SIZE;
+            player->x = MAP_SIZE-1;
         }
     }
     world_paint_spot(player->x, player->y, player->id);
@@ -160,7 +160,7 @@ void action_teleport_r(t_player *player)
     for(int i = 0; i < 8; i++)
     {
         player->x++;
-        if(player->x > MAP_SIZE)
+        if(player->x > MAP_SIZE-1)
         {
             player->x = 0;
         }
@@ -192,7 +192,7 @@ void action_teleport_d(t_player *player)
     for(int i = 0; i < 8; i++)
     {
         player->y++;
-        if(player->y > MAP_SIZE)
+        if(player->y > MAP_SIZE-1)
         {
             player->y = 0;
         }
@@ -213,21 +213,21 @@ void action_splash(t_player *player){
         player->credits-=8;
 
     }
-    else if(player->x == 0 && player->y==MAP_SIZE){
+    else if(player->x == 0 && player->y==MAP_SIZE-1){
         world_paint_spot(player->x+1, player->y-1, player->id);
         world_paint_spot(player->x, player->y-1, player->id);
         world_paint_spot(player->x+1, player->y, player->id);
         player->credits-=8;
 
     }
-    else if(player->x == MAP_SIZE && player->y==0){
+    else if(player->x == MAP_SIZE-1 && player->y==0){
         world_paint_spot(player->x-1, player->y+1, player->id);
         world_paint_spot(player->x, player->y+1, player->id);
         world_paint_spot(player->x-1, player->y, player->id);
         player->credits-=8;
 
     }
-    else if(player->x == MAP_SIZE && player->y==MAP_SIZE){
+    else if(player->x == MAP_SIZE-1 && player->y==MAP_SIZE-1){
         world_paint_spot(player->x-1, player->y-1, player->id);
         world_paint_spot(player->x, player->y-1, player->id);
         world_paint_spot(player->x-1, player->y, player->id);
@@ -243,7 +243,7 @@ void action_splash(t_player *player){
         world_paint_spot(player->x, player->y-1, player->id); 
         player->credits-=8;
     }
-    else if(player->x==MAP_SIZE){
+    else if(player->x==MAP_SIZE-1){
         world_paint_spot(player->x, player->y+1, player->id);
         world_paint_spot(player->x, player->y-1, player->id);
         world_paint_spot(player->x-1, player->y+1, player->id);
@@ -259,7 +259,7 @@ void action_splash(t_player *player){
         world_paint_spot(player->x-1, player->y+1, player->id); 
         player->credits-=8;
     }
-    else if(player->y==MAP_SIZE){
+    else if(player->y==MAP_SIZE-1){
         world_paint_spot(player->x-1, player->y, player->id);
         world_paint_spot(player->x+1, player->y, player->id);
         world_paint_spot(player->x+1, player->y+1, player->id);
@@ -292,19 +292,19 @@ void action_explosion(t_bomb *p_bomb){
         world_paint_spot(p_bomb->x+1, p_bomb->y, p_bomb->id);
 
     }
-    else if(p_bomb->x == 0 && p_bomb->y==MAP_SIZE){
+    else if(p_bomb->x == 0 && p_bomb->y==MAP_SIZE-1){
         world_paint_spot(p_bomb->x+1, p_bomb->y-1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y-1, p_bomb->id);
         world_paint_spot(p_bomb->x+1, p_bomb->y, p_bomb->id);
 
     }
-    else if(p_bomb->x == MAP_SIZE && p_bomb->y==0){
+    else if(p_bomb->x == MAP_SIZE-1 && p_bomb->y==0){
         world_paint_spot(p_bomb->x-1, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x-1, p_bomb->y, p_bomb->id);
 
     }
-    else if(p_bomb->x == MAP_SIZE && p_bomb->y==MAP_SIZE){
+    else if(p_bomb->x == MAP_SIZE-1 && p_bomb->y==MAP_SIZE-1){
         world_paint_spot(p_bomb->x-1, p_bomb->y-1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y-1, p_bomb->id);
         world_paint_spot(p_bomb->x-1, p_bomb->y, p_bomb->id);
@@ -318,7 +318,7 @@ void action_explosion(t_bomb *p_bomb){
         world_paint_spot(p_bomb->x, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y-1, p_bomb->id); 
     }
-    else if(p_bomb->x==MAP_SIZE){
+    else if(p_bomb->x==MAP_SIZE-1){
         world_paint_spot(p_bomb->x, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y-1, p_bomb->id);
         world_paint_spot(p_bomb->x-1, p_bomb->y+1, p_bomb->id);
@@ -331,6 +331,13 @@ void action_explosion(t_bomb *p_bomb){
         world_paint_spot(p_bomb->x+1, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x, p_bomb->y+1, p_bomb->id);
         world_paint_spot(p_bomb->x-1, p_bomb->y+1, p_bomb->id); 
+    }
+    else if(p_bomb->y==MAP_SIZE-1){
+        world_paint_spot(p_bomb->x-1, p_bomb->y, p_bomb->id);
+        world_paint_spot(p_bomb->x+1, p_bomb->y, p_bomb->id);
+        world_paint_spot(p_bomb->x+1, p_bomb->y-1, p_bomb->id);
+        world_paint_spot(p_bomb->x, p_bomb->y-1, p_bomb->id);
+        world_paint_spot(p_bomb->x-1, p_bomb->y-1, p_bomb->id); 
     }
     else{
     world_paint_spot(p_bomb->x+1, p_bomb->y+1, p_bomb->id);
